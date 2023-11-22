@@ -1,0 +1,1 @@
+{"name": "c_user", "value": "100033512510497", "path": "/", "domain": ".facebook.com", "secure": true, "httpOnly": false, "expiry": 1732163760, "sameSite": "None"}

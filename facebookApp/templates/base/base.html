@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+{% include 'base/head.html' %}
+
+<!--begin::Body-->
+
+<body id="kt_body" class="header-fixed">
+
+    {% include 'configurations/main.html' %}
+
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            {% include 'root/aside/main.html' %}
+            <!--begin::Wrapper-->
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                <!--begin::Header-->
+                <div id="kt_header" class="header mt-0 mt-lg-0 pt-lg-0" data-kt-sticky="true"
+                    data-kt-sticky-name="header" data-kt-sticky-offset="{lg: '300px'}">
+                    <!--begin::Container-->
+                    <div class="container d-flex flex-stack flex-wrap gap-4" id="kt_header_container">
+                        {% block title %}
+                        {% endblock title %}
+                        {% include 'root/wrapper/wrapper.html' %}
+                        <!--begin::Topbar-->
+                        <div class="d-flex align-items-center flex-shrink-0 mb-0 mb-lg-0">
+                            {% block controls %}
+                            {% endblock controls %}
+                            {% include 'root/wrapper/theme.html' %}
+                        </div>
+                        <!--end::Topbar-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Header-->
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    {% block contenido %}
+                    {% endblock contenido %}
+                </div>
+                <!--end::Content-->
+
+                {% include 'root/wrapper/footer.html' %}
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Root-->
+
+    <!--{ % include 'drawers/main.html' % } -->
+
+    {% include 'configurations/scrolltop.html' %}
+
+    {% include 'javascripts/main.html' %}
+
+</body>
+<!--end::Body-->
+
+</html>

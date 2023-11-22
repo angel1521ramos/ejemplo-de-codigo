@@ -1,0 +1,245 @@
+{% extends 'base/base.html' %}
+{% block title %}
+<!--begin::Page title-->
+<div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-10 pb-lg-0"
+    data-kt-swapper="true" data-kt-swapper-mode="prepend"
+    data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
+    <!--begin::Heading-->
+    <h1 class="d-flex flex-column text-dark fw-bold my-0 fs-1">Cuentas</h1>
+    <!--end::Heading-->
+
+    <!--begin::Breadcrumb-->
+    <ul class="breadcrumb breadcrumb-dot fw-semibold fs-base my-1">
+        <li class="breadcrumb-item text-muted">
+            <a href="{% url 'accounts' %}" class="text-muted text-hover-primary">
+                Inicio
+            </a>
+        </li>
+
+        <li class="breadcrumb-item text-muted">Cuentas</li>
+
+        <li class="breadcrumb-item text-dark">Detalle</li>
+    </ul>
+    <!--end::Breadcrumb-->
+</div>
+<!--end::Page title-->
+{% endblock title %}
+{% block controls %}
+<!--begin::Controls-->
+<div class="d-flex flex-wrap my-1">
+    <!--begin::Tab nav-->
+    <ul class="nav nav-pills me-6 mb-2 mb-sm-0" role="tablist">
+        <li class="nav-item m-0 me-3" role="presentation">
+            <form data-kt-search-element="form" action="{% url 'like' account.id %}" method="POST" class="d-none d-lg-block w-100 position-relative mb-2 mb-lg-0" autocomplete="off">
+                {% csrf_token %}
+                <!--begin::Input group-->
+                <div class="input-group input-group-sm">
+                    <input type="text" id="url" name="url" class="form-control" placeholder="Dar like" aria-label="Dar like"
+                        aria-describedby="basic-addon2" required />
+                    <button type="submit" class="btn btn-icon btn-outline btn-active-color-danger">
+                        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/general/gen030.svg-->
+                        <span class="svg-icon svg-icon-muted svg-icon-2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
+                                    fill="currentColor" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </button>
+                </div>
+                <!--end::Input group-->
+            </form>
+        </li>
+
+        <li class="nav-item m-0 me-3" role="presentation">
+            <form data-kt-search-element="form" action="{% url 'share' account.id %}" method="POST" class="d-none d-lg-block w-100 position-relative mb-2 mb-lg-0" autocomplete="off">
+                {% csrf_token %}
+                <!--begin::Input group-->
+                <div class="input-group input-group-sm">
+                    <input type="text" id="url" name="url" class="form-control" placeholder="Dar retweet" aria-label="Dar retweet"
+                        aria-describedby="basic-addon2" required />
+                    <button type="submit" class="btn btn-icon btn-outline btn-active-color-success">
+                        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/arrows/arr029.svg-->
+                        <span class="svg-icon svg-icon-muted svg-icon-2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                    fill="currentColor" />
+
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </button>
+                </div>
+                <!--end::Input group-->
+            </form>
+        </li>
+
+        
+    </ul>
+    <!--end::Tab nav-->
+</div>
+<!--end::Controls-->
+{% endblock controls %}
+{% block contenido %}
+<div class="container-xxl" id="kt_content_container">
+    <!--begin::Form-->
+    <form class="form" action="{% url 'update_accounts' account.id %}" method="POST">
+        {% csrf_token %}
+        <!--begin::Card-->
+        <div class="card">
+            <!--begin::Card header-->
+            <div class="card-header">
+                <!--begin::Card title-->
+                <div class="card-title fs-3 fw-bold">Editar cuenta (solo local)</div>
+                <!--end::Card title-->
+            </div>
+            <!--end::Card header-->
+
+            <!--begin::Form-->
+            <form id="kt_project_settings_form" class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                novalidate="novalidate">
+                <!--begin::Card body-->
+                <div class="card-body p-9">
+                    <!--begin::Row-->
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Email</div>
+                        </div>
+                        <!--end::Col-->
+
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                            <input class="form-control form-control-solid" value="{{ account.email }}" type="text"
+                                id="email" name="email" placeholder="Doe" required />
+                            <div
+                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Row-->
+
+                    <!--begin::Row-->
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Contraseña</div>
+                        </div>
+                        <!--end::Col-->
+
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row fv-plugins-icon-container">
+                            <input class="form-control form-control-solid" value="{{ account.password }}" type="text"
+                                id="password" name="password" placeholder="Flowbite" required />
+                            <div
+                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Row-->
+                </div>
+                <!--end::Card body-->
+
+                <!--begin::Card footer-->
+                <div class="card-footer d-flex justify-content-end py-6 px-9">
+                    <button type="submit" class="btn btn-primary me-2">Guardar</button>
+
+                    <button type="button" class="btn btn-light btn-active-light-primary" data-bs-toggle="modal"
+                        data-bs-target="#kt_modal_new_user">
+                        Eliminar
+                    </button>
+                </div>
+                <!--end::Card footer-->
+                <input type="hidden" />
+            </form>
+            <!--end:Form-->
+        </div>
+        <!--end::Card-->
+    </form>
+    <!--end:Form-->
+</div>
+
+<!--begin::Modal - Users Search-->
+<div class="modal fade" id="kt_modal_new_user" tabindex="-1" style="display: none" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered">
+        <!--begin::Modal content-->
+        <div
+            class="modal-content rounded alert alert-dismissible bg-light-danger d-flex flex-column py-10 px-10 px-lg-20 mb-10">
+            <!--begin::Modal header-->
+            <div class="modal-header position-absolute top-0 end-0 m-2 btn btn-icon btn-icon-danger">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-danger" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y">
+                <!--begin::Input group-->
+                <div class="text-center mb-5">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/general/gen044.svg-->
+                    <span class="svg-icon svg-icon-danger svg-icon-5x">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
+                            <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)"
+                                fill="currentColor" />
+                            <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)"
+                                fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Input group-->
+
+                <!--begin::Input group-->
+                <div class="text-center">
+                    <!--begin::Title-->
+                    <h1 class="fw-bold mb-5">Eliminar registro</h1>
+                    <!--end::Title-->
+                </div>
+                <!--end::Input group-->
+
+                <!--begin::Actions-->
+                <div class="text-center">
+                    <form action="{% url 'delete_accounts' account.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="button" id="kt_modal_new_target_cancel"
+                            class="btn btn-outline btn-outline-danger btn-active-danger m-2" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" id="kt_modal_new_target_submit" class="btn btn-danger m-2">
+                            <span class="indicator-label"> Eliminar </span>
+                            <span class="indicator-progress">
+                                Por favor espera...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <!--end::Actions-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+<!--end::Modal - Users Search-->
+{% endblock contenido %}
